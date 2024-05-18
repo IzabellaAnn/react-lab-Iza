@@ -2,29 +2,36 @@ import logo from './logo.svg';
 import './App.css';
 import {useState} from "react";
 
-function App() {
+export default function App() {
     const [email, setEmail] = useState('fracz@agh.edu.pl');
-
+    const [isLogged, setLogin] = useState(false);
 
     function handleChange(event) {
         setEmail(event.target.value);
     }
 
-    let message = <div> Masz krótki adress. </div>
-    if (email.length > 15) {
-        message = <div> Masz bardzi długi adress. </div>
-    } else if (email.length > 5) {
-        message = <div> Masz ok adress. </div>;
+    function logout () {
+        setLogin(false);
+        setEmail('');
     }
 
+    let content;
+    if (isLogged) {
+        content = <div>
+            <h2> Twój email to {email} </h2>>
+            <button onClick={() => setLogin(false)} > Wyloguj sie </button>
+        </div>
+    } else {
+        content = <div>
+            <input type= "text" onChange={handleChange}/>
+            <button onClick={() => setLogin(true)}> Zaloguj sie </button>
+        </div>
+    }
 
     return (
         <div>
             <h1>System do zapisów na zajęcia</h1>
-            <h2>Twój e-mail to {email}</h2>
-            {message}
-            <input type="text" value={email} onChange={handleChange}/>
+            {content}
         </div>
     );
 }
-export default App;
