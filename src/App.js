@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from "react";
+import "milligram";
 
 export default function App() {
     const [email, setEmail] = useState('fracz@agh.edu.pl');
@@ -30,7 +31,8 @@ export default function App() {
 
     return (
         <div>
-            <h1>System do zapisów na zajęcia</h1>
+            <h1>Witaj w systemie do zapisów na zajęcia</h1>
+            <h3>Zaloguj się e-mailem</h3>
             {content}
         </div>
     );
